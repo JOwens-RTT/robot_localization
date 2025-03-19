@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Check if the script is being run as root
+if [ "$EUID" -eq 0 ]
+  then echo "Please do not run this script as root"
+  exit
+fi
+
+sudo apt update
+rosdep update
+
+rosdep install --from-paths src --ignore-src -r -y
